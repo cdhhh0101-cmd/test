@@ -1,0 +1,16 @@
+/*
+ * Modal visibility guard for LuCI's global modal overlay.
+ *
+ * LuCI opens and closes dialogs by toggling `modal-overlay-active` on <body>.
+ * Keep the overlay explicitly hidden when that body class is absent so Cancel /
+ * Dismiss clicks that call ui.hideModal() always remove the popup visually.
+ */
+body:not(.modal-overlay-active) > #modal_overlay {
+	display: none !important;
+	pointer-events: none !important;
+}
+
+body.modal-overlay-active > #modal_overlay {
+	display: grid !important;
+	pointer-events: auto !important;
+}
